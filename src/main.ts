@@ -1,9 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { promMiddleware } from 'express-red-middleware';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const port = 3003;
-  await app.listen(port);
+
+  app.use(promMiddleware({}));
+
+  await app.listen(3003);
 }
+
 bootstrap();
