@@ -2,7 +2,8 @@
 
 ## Setup
 
-1. `npm i`
+1. `cp .env.dist .env`
+2. `npm i`
 2. `docker compose up -d`
 3. `docker compose run local-aws awslocal sqs create-queue --queue-name my_test_queue --endpoint-url=http://localstack:4566`
 4. `npm run start`
