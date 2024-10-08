@@ -3,6 +3,7 @@ import { CreateUserDto } from './dto';
 import { MessageProducer } from '../producer/producer.service';
 import { UserRepository } from './user.repository';
 import * as bcrypt from 'bcrypt';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class UserService {
@@ -18,14 +19,21 @@ export class UserService {
     return await bcrypt.hash(password, this.saltRounds);
   }
 
-  async register(userData: CreateUserDto) {
+  async register(userData: CreateUserDto): Promise<User> {
     userData.password = await this.hashPassword(userData.password);
     const createdUser = await this.repository.createUser(userData);
-    await this.producer.sendMessage({
-      type: 'user_created',
-      data: {
-        ...createdUser,
+    const headers = { 'X-Delay': '9000' };
+
+    await this.producer.sendMessage(
+      {
+        type: 'user_created',
+        data: {
+          ...createdUser,
+        },
       },
-    });
+      headers,
+    );
+
+    return createdUser;
   }
 }
