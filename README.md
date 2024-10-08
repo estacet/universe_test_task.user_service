@@ -15,3 +15,6 @@ Run local-aws `docker compose run local-aws bash`
 
 1. Read message from queue `awslocal sqs receive-message --queue-url http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/my_test_queue --endpoint-url=http://localstack:4566`
 2. Clean queue ` awslocal sqs purge-queue --queue-url http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/my_test_queue --endpoint-url=http://localstack:4566`
+
+## Postman collection
+You can import [Postman collection](UniverseTest.postman_collection.json) to see available API endpoints.
