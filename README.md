@@ -4,9 +4,10 @@
 
 1. `cp .env.dist .env`
 2. `npm i`
-2. `docker compose up -d`
-3. `docker compose run local-aws awslocal sqs create-queue --queue-name my_test_queue --endpoint-url=http://localstack:4566`
-4. `npm run start`
+3. `docker compose up -d`
+4. `npm run prisma:migrate`
+5. `docker compose run local-aws awslocal sqs create-queue --queue-name my_test_queue --endpoint-url=http://localstack:4566`
+6. `npm run start`
 
 ## Useful commands
 
