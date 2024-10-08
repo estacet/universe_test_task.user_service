@@ -19,7 +19,7 @@ export class MessageProducer {
       messageAttributes: {
         'X-Delay': {
           DataType: 'Number',
-          StringValue: headers['X-Delay'] || '100',
+          StringValue: headers['X-Delay'] || '0',
         } as MessageAttributeValue,
       },
     });
